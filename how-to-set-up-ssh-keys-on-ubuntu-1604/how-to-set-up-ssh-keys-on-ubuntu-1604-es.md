@@ -120,23 +120,23 @@ and check to make sure that only the key(s) you wanted were added.
 
 En este punto, su clave <code>id\_rsa.pub</code> se habrá cargado en la cuenta remota. |Puede continuar con el paso 3.
 
-### Copying Public Key Using SSH
+### Copiar la clave pública usando SSH
 
-If you do not have <code>ssh-copy-id</code> available, but you have password-based SSH access to an account on your server, you can upload your keys using a conventional SSH method.
+Si no tiene <code>ssh-copy-id</code> disponible, pero tiene acceso de SSH basado en contraseña a una cuenta de su servidor, puede cargar sus claves usando un método de SSH convencional.
 
-We can do this by using the cat command to read the contents of the public SSH key on our local computer and piping that through an SSH connection to the remote server.
+Podemos hacer esto usando el comando <code>cat</code> para leer el contenido de la clave de SSH pública en nuestra computadora local y canalizando esto a través de una conexión SSH al servidor remoto.
 
-On the other side, we can make sure that the <code>~/.ssh</code> directory exists and has the correct permissions under the account we’re using.
+Por otra parte, podemos asegurarnos de que el directorio <code>~/.ssh</code> exista y tenga los permisos correctos conforme a la cuenta que usamos.
 
-We can then output the content we piped over into a file called <code>authorized\_keys</code> within this directory. We’ll use the <code>>></code> redirect symbol to append the content instead of overwriting it. This will let us add keys without destroying previously added keys.
+Luego podemos transformar el contenido que canalizamos a un archivo llamado <code>authorized\_keys</code> dentro de este directorio. Usaremos el símbolo de redireccionamiento <code>>></code> para anexar el contenido en lugar de sobrescribirlo. Esto nos permitirá agregar claves sin eliminar claves previamente agregadas.
 
-The full command looks like this:
+El comando completo tiene este aspecto:
 
 ```shell
 cat ~/.ssh/id\_rsa.pub | ssh username@remote\_host "mkdir -p ~/.ssh && touch ~/.ssh/authorized\_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized\_keys"
 ```
 
-You may see the following message:
+Es posible que vea el siguiente mensaje:
 
 _Salida por pantalla_
 ```
@@ -145,16 +145,16 @@ ECDSA key fingerprint is fd:fd:d4:f9:77:fe:73:84:e1:55:00:ad:d6:6d:22:fe.
 Are you sure you want to continue connecting (yes/no)? yes
 ```
 
-This means that your local computer does not recognize the remote host. This will happen the first time you connect to a new host. Type “yes” and press <kbd>INTRO</kbd> to continue.
+Esto significa que su computadora local no reconoce el host remoto. Esto sucederá la primera vez que establezca conexión con un nuevo host. Escriba “yes” (sí) y presione <kbd>INTRO</kbd> para continuar.
 
-Afterwards, you should be prompted to enter the remote user account password:
+Posteriormente, deberá recibir la solicitud de introducir la contraseña de la cuenta de usuario remota:
 
 _Salida por pantalla_
 ```
 username@203.0.113.1's password:
 ```
 
-After entering your password, the content of your <code>id\_rsa.pub</code> key will be copied to the end of the <code>authorized\_keys</code> file of the remote user’s account. Continue on to Step 3 if this was successful.
+Una vez que ingrese su contraseña, el contenido de su clave <code>id\_rsa.pub</code> se copiará al final del archivo <code>authorized\_keys</code> de la cuenta del usuario remoto. Continúe con el paso 3 si el procedimiento se completó de forma correcta.
 
 ### Copying Public Key Manually
 
