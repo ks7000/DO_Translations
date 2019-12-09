@@ -75,7 +75,7 @@ La alternativa más rápida para copiar su clave pública al anfitrión de Ubunt
 
 ### Copiar clave pública usando <code>ssh-copy-id</code>
 
-La <code>ssh-copy-id</code> se incluye por defecto en muchos sistemas operativos. Por ello, es posible que tenga la posibilidad de disponer de ella en su sistema local. Para que este método funcione, ya debe disponer de acceso con SSH basado en contraseña en su servidor.
+La herramienta <code>ssh-copy-id</code> se incluye por defecto en muchos sistemas operativos. Por ello, es posible que tenga la posibilidad de disponer de ella en su sistema local. Para que este método funcione, ya debe disponer de acceso con SSH basado en contraseña en su servidor.
 
 Para usar la utilidad, solo necesita especificar el host remoto al que desee conectarse y la cuenta de usuario a la que tenga acceso SSH con contraseña. Esta es la cuenta a la que se copiará su clave de SSH pública.
 
@@ -106,7 +106,7 @@ _Salida por pantalla_
 username@203.0.113.1's password:
 ```
 
-Escriba la contraseña (por motivos de seguridad, no se mostrará lo que escriba) y presione <kbd>INTRO</kbd>. La utilidad se conectará a la cuenta en el host remoto usando la contraseña que proporcionó. Luego, copie el contenido de su clave <code> ~/.ssh/id\_rsa.pub </code> a un archivo en el directorio principal de la cuenta remota <code>~/.ssh</code> llamado <code>authorized_keys</code>.
+Escriba la contraseña (la cual, por motivos de seguridad, no se mostrará cuando usted escriba) y presione <kbd>INTRO</kbd>. La utilidad se conectará a la cuenta en el anfitrión remoto usando la contraseña que proporcionó. Luego, copie el contenido de su clave <code> ~/.ssh/id\_rsa.pub </code> a un archivo en el directorio principal de la cuenta remota <code>~/.ssh</code> llamado <code>authorized_keys</code>.
 
 Debería ver el siguiente resultado:
 
@@ -118,7 +118,7 @@ Now try logging into the machine, with:   "ssh 'username@203.0.113.1'"
 and check to make sure that only the key(s) you wanted were added.
 ```
 
-En este punto, su clave <code>id\_rsa.pub</code> se habrá cargado en la cuenta remota. |Puede continuar con el paso 3.
+En este punto, su clave <code>id\_rsa.pub</code> se habrá cargado en la cuenta remota y puede continuar con el paso 3.
 
 ### Copiar la clave pública usando SSH
 
