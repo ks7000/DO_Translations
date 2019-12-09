@@ -156,58 +156,58 @@ username@203.0.113.1's password:
 
 Una vez que ingrese su contraseña, el contenido de su clave <code>id\_rsa.pub</code> se copiará al final del archivo <code>authorized\_keys</code> de la cuenta del usuario remoto. Continúe con el paso 3 si el procedimiento se completó de forma correcta.
 
-### Copying Public Key Manually
+### Copiar la clave pública de forma manual
 
-If you do not have password-based SSH access to your server available, you will have to complete the above process manually.
+Si no tiene disponibilidad de acceso de SSH basado en contraseña a su servidor, deberá completar el proceso anterior de forma manual.
 
-We will manually append the content of your <code>id\_rsa.pub</code> file to the <code>~/.ssh/authorized\_keys</code> file on your remote machine.
+Habilitaremos el contenido de su archivo <code>id\_rsa.pub</code> para el archivo  <code>~/.ssh/authorized\_keys</code> en su máquina remota.
 
-To display the content of your <code>id\_rsa.pub</code> key, type this into your local computer:
+Para mostrar el contenido de su clave <code>id\_rsa.pub</code> , escriba esto en su computadora local:
 
 ```shell
 $ cat ~/.ssh/id_rsa.pub
 ```
 
-You will see the key’s content, which should look something like this:
+Verá el contenido de la clave, que debería tener un aspecto similar a este:
 
 _Salida por pantalla_
 ```
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCqql6MzstZYh1TmWWv11q5O3pISj2ZFl9HgH1JLknLLx44+tXfJ7mIrKNxOOwxIxvcBF8PXSYvobFYEZjGIVCEAjrUzLiIxbyCoxVyle7Q+bqgZ8SeeM8wzytsY+dVGcBxF6N4JS+zVk5eMcV385gG3Y6ON3EG112n6d+SMXY0OEBIcO6x+PnUSGHrSgpBgX7Ks1r7xqFa7heJLLt2wWwkARptX7udSq05paBhcpB0pHtA1Rfz3K2B+ZVIpSDfki9UVKzT8JUmwW6NNzSgxUfQHGwnW7kj4jp4AT0VZk3ADw497M2G/12N0PPB5CnhHf7ovgy6nL1ikrygTKRFmNZISvAcywB9GVqNAVE+ZHDSCuURNsAInVzgYo9xgJDW8wUw2o8U77+xiFxgI5QSZX3Iq7YLMgeksaO4rBJEa54k8m5wEiEE1nUhLuJ0X/vh2xPff6SQ1BL/zkOhvJCACK6Vb15mDOeCSq54Cr7kvS46itMosi/uS66+PujOO+xt/2FWYepz6ZlN70bRly57Q06J+ZJoc9FfBCbCyYH7U/ASsmY095ywPsBo1XQ9PqhnN1/YOorJ068foQDNVpm146mUpILVxmq41Cj55YKHEazXGsdBIbXWhcrRf4G2fJLRcGUr9q8/lERo9oxRm5JFX6TCmj6kmiFqv+Ow9gI0x8GvaQ== demo@test
 ```
 
-Access your remote host using whichever method you have available.
+Acceda a su host remoto usando el método que esté a su disposición.
 
-Once you have access to your account on the remote server, you should make sure the <code>~/.ssh</code> directory exists. This command will create the directory if necessary, or do nothing if it already exists:
+Una vez que tenga acceso a su cuenta en el servidor remoto, debe asegurarse de que exista el directorio <code>~/.ssh</code>. Con este comando se creará el directorio, si es necesario. Si este último ya existe, no se creará:
 
 ```shell
 $ mkdir -p ~/.ssh
 ```
 
-Now, you can create or modify the <code>authorized\_keys</code> file within this directory. You can add the contents of your <code>id\_rsa.pub</code> file to the end of the <code>authorized\_keys</code> file, creating it if necessary, using this command:
+Ahora, podrá crear o modificar el archivo <code>authorized\_keys</code> dentro de este directorio. Puede agregar el contenido de su archivo <code>id\_rsa.pub</code> al final del archivo <code>authorized\_keys</code> y, si es necesario, crear este último con el siguiente comando:
 
 ```shell
 $ echo public\_key\_string >> ~/.ssh/authorized\_keys
 ```
 
-In the above command, substitute the <code>public\_key\_string</code> with the output from the <code>cat ~/.ssh/id_rsa.pub</code> command that you executed on your local system. It should start with <code>ssh-rsa AAAA... </code>.
+En el comando anterior, reemplace <code>public\_key\_string</code> por el resultado del comando <code>cat ~/.ssh/id_rsa.pub</code> que ejecutó en su sistema local. Debería iniciar con <code>ssh-rsa AAAA... </code>.
 
-Finally, we’ll ensure that the <code>~/.ssh</code> directory and <code>authorized\_keys</code> file have the appropriate permissions set:
+Por último, verificaremos que el directorio <code>~/.ssh</code> y el archivo <code>authorized\_keys</code> tengan el conjunto de permisos apropiados:
 
 ```shell
 $ chmod -R go= ~/.ssh
 ```
 
-This recursively removes all “group” and “other” permissions for the <code>~/.ssh/</code> directory.
+Con esto, se eliminan de forma recursiva todos los permisos “grupo” y “otros” del directorio <code>~/.ssh/</code>.
 
-If you’re using the root account to set up keys for a user account, it’s also important that the <code>~/.ssh/</code> directory belongs to the user and not to root:
+Si está usando la cuenta <code>root</code> para configurar claves para una cuenta de usuario, también es importante que el directorio <code>~/.ssh/</code> pertenezca al usuario y no sea <code>root</code>:
 
 ```shell
 $ chown -R sammy:sammy ~/.ssh
 ```
 
-In this tutorial our user is named <mark>sammy</mark> but you should substitute the appropriate username into the above command.
+En este tutorial, nuestro usuario recibe el nombre <mark>sammy</mark> pero debe sustituir el nombre de usuario que corresponda en el comando anterior.
 
-We can now attempt passwordless authentication with our Ubuntu server.
+Ahora podemos intentar la autenticación sin contraseña con nuestro servidor de Ubuntu.
 
 ## Step 3 — Authenticate to Ubuntu Server Using SSH Keys
 
