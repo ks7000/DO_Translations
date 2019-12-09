@@ -160,7 +160,7 @@ Una vez que ingrese su contraseña, el contenido de su clave <code>id\_rsa.pub</
 
 Si no tiene disponibilidad de acceso de SSH basado en contraseña a su servidor, deberá completar el proceso anterior de forma manual.
 
-Habilitaremos el contenido de su archivo <code>id\_rsa.pub</code> para el archivo  <code>~/.ssh/authorized\_keys</code> en su máquina remota.
+Habilitaremos el contenido de su archivo <code>id\_rsa.pub</code> para el archivo <code>~/.ssh/authorized\_keys</code> en su máquina remota.
 
 Para mostrar el contenido de su clave <code>id\_rsa.pub</code> , escriba esto en su computadora local:
 
@@ -175,9 +175,9 @@ _Salida por pantalla_
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCqql6MzstZYh1TmWWv11q5O3pISj2ZFl9HgH1JLknLLx44+tXfJ7mIrKNxOOwxIxvcBF8PXSYvobFYEZjGIVCEAjrUzLiIxbyCoxVyle7Q+bqgZ8SeeM8wzytsY+dVGcBxF6N4JS+zVk5eMcV385gG3Y6ON3EG112n6d+SMXY0OEBIcO6x+PnUSGHrSgpBgX7Ks1r7xqFa7heJLLt2wWwkARptX7udSq05paBhcpB0pHtA1Rfz3K2B+ZVIpSDfki9UVKzT8JUmwW6NNzSgxUfQHGwnW7kj4jp4AT0VZk3ADw497M2G/12N0PPB5CnhHf7ovgy6nL1ikrygTKRFmNZISvAcywB9GVqNAVE+ZHDSCuURNsAInVzgYo9xgJDW8wUw2o8U77+xiFxgI5QSZX3Iq7YLMgeksaO4rBJEa54k8m5wEiEE1nUhLuJ0X/vh2xPff6SQ1BL/zkOhvJCACK6Vb15mDOeCSq54Cr7kvS46itMosi/uS66+PujOO+xt/2FWYepz6ZlN70bRly57Q06J+ZJoc9FfBCbCyYH7U/ASsmY095ywPsBo1XQ9PqhnN1/YOorJ068foQDNVpm146mUpILVxmq41Cj55YKHEazXGsdBIbXWhcrRf4G2fJLRcGUr9q8/lERo9oxRm5JFX6TCmj6kmiFqv+Ow9gI0x8GvaQ== demo@test
 ```
 
-Acceda a su host remoto usando el método que esté a su disposición.
+Acceda a su anfitrión remoto usando el método que esté a su disposición.
 
-Una vez que tenga acceso a su cuenta en el servidor remoto, debe asegurarse de que exista el directorio <code>~/.ssh</code>. Con este comando se creará el directorio, si es necesario. Si este último ya existe, no se creará:
+Una vez que tenga acceso a su cuenta en el servidor remoto, debe asegurarse de que exista el directorio <code>~/.ssh</code>. Con el siguiente comando se creará el directorio, si es necesario. Si este último ya existe, no se creará (el parámetro <code>-p</code> previene un mensaje de error si ya existe la carpeta):
 
 ```shell
 $ mkdir -p ~/.ssh
@@ -199,7 +199,7 @@ $ chmod -R go= ~/.ssh
 
 Con esto, se eliminan de forma recursiva todos los permisos “grupo” y “otros” del directorio <code>~/.ssh/</code>.
 
-Si está usando la cuenta <code>root</code> para configurar claves para una cuenta de usuario, también es importante que el directorio <code>~/.ssh/</code> pertenezca al usuario y no sea <code>root</code>:
+Si está usando la cuenta <code>root</code> (usuario _raíz_ o **administrador**) para configurar claves para una cuenta de usuario, también es importante que el directorio <code>~/.ssh/</code> pertenezca al usuario y no sea <code>root</code>:
 
 ```shell
 $ chown -R sammy:sammy ~/.ssh
