@@ -271,16 +271,17 @@ $ ssh username@remote\_host
 Una vez que haya verificado su servicio SSH, podrá cerrar de forma segura todas las sesiones de servidores actuales.
 
 El demonio de SSH de su servidor de Ubuntu ahora solo responderá a claves de SSH. La autenticación basada en contraseña se habrá desactivado con éxito.
+
 ## Conclusion
 
-You should now have SSH-key-based authentication configured on your server, allowing you to sign in without providing an account password.
+De esta manera, la autenticación basada en claves de SSH debería quedar configurada en su servidor. Esto le permitirá iniciar sesión sin proporcionar una contraseña de cuenta.
 
-If you’d like to learn more about working with SSH, take a look at our [SSH Essentials Guide](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys).
+Si desea obtener más información sobre cómo trabajar con SSH, consulte nuestra [Guía de aspectos básicos de SSH](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys).
 
-Written by [Hanif Jetha](https://www.digitalocean.com/community/users/hjet).
+Escrito por [Hanif Jetha](https://www.digitalocean.com/community/users/hjet).
 
 Editor: [Lisa Tagliaferry](https://www.digitalocean.com/community/users/ltagliaferri).
 
-This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Este trabajo está bajo licencia [Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es_ES).
 
 
