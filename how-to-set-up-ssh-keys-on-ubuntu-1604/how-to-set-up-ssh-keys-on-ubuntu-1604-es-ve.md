@@ -71,7 +71,7 @@ Ahora dispondrá de una clave pública y privada que puede usar para realizar la
 
 ## Paso 2: Copiar la clave pública al servidor de Ubuntu
 
-La alternativa más rápida para copiar su clave pública al host de Ubuntu es usar una utilidad llamada <code>ssh-copy-id</code>. Debido a su simplicidad, este método se recomienda mucho si está disponible. Si no tiene la utilidad <code>ssh-copy-id</code> disponible en su máquina cliente, puede usar uno de los dos métodos alternativos proporcionados en esta sección (copiar mediante SSH con contraseña o copiar manualmente la clave).
+La alternativa más rápida para copiar su clave pública al anfitrión de Ubuntu es usar una utilidad llamada <code>ssh-copy-id</code>. Debido a su simplicidad, este método se recomienda mucho si está disponible. Si no tiene la utilidad <code>ssh-copy-id</code> disponible en su máquina cliente, puede usar uno de los dos métodos alternativos proporcionados en esta sección (copiar mediante SSH con contraseña o copiar manualmente la clave).
 
 ### Copiar clave pública usando <code>ssh-copy-id</code>
 
