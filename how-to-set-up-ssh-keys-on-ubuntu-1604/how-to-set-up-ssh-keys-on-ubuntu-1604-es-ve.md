@@ -8,13 +8,13 @@ En esta guía, nos centraremos en configurar claves SSH para una instalación de
 
 ## Paso 1: Crear el par de claves RSA
 
-El primer paso es crear un par de claves en la máquina cliente (por lo general, su computadora):
+RSA es un sistema criptográfico de clave pública creadas por los profesores **R**ivest, **S**hamir y **A**dleman. El primer paso es crear un par de claves de este tipo en la máquina cliente (por lo general, su computadora) por medio de la siguienta herramienta:
 
 ```shell
 $ ssh-keygen
 ```
 
-De forma predeterminada, <code>ssh-keygen</code> creará un par de claves RSA de 2048 bits, que ofrece suficiente seguridad para la mayoría de los casos de uso (como opción, puede pasar en el indicador **-b 4096** a crear una clave más grande de 4096 bits).
+De forma predeterminada, <code>ssh-keygen</code> creará un par de claves RSA de 2048 bits, que ofrece suficiente seguridad para la mayoría de los casos de uso (como opción, puede pasar en el indicador **-b 4096** para crear una clave más grande de 4096 bits).
 
 Después de ingresar el comando, verá el siguiente resultado:
 
@@ -34,7 +34,7 @@ _Salida por pantalla_
 Overwrite (y/n)?
 ```
 
-Si elige sobrescribir la clave en el disco, ya *no *podrá autenticar usando la clave anterior. Tenga mucho cuidado al convalidar la operación, ya que este es un proceso destructivo que no puede revertirse.
+Si elige sobrescribir la clave en el disco, ya **no** podrá autenticar usando la clave anterior. Tenga mucho cuidado al convalidar la operación, ya que este es un proceso destructivo que no puede revertirse.
 
 Debería ver el siguiente mensaje:
 
@@ -43,7 +43,7 @@ _Salida por pantalla_
 Enter passphrase (empty for no passphrase):
 ```
 
-Aquí, puede introducir una frase de contraseña segura, lo cual se recomienda mucho. Una frase de contraseña agrega una capa de seguridad adicional para evitar el inicio de sesión de usuarios no autorizados. Para obtener más información sobre seguridad, consulte nuestro tutorial [Cómo configurar la autenticación basada en claves de SSH en un servidor de Linux](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server).
+Aquí, puede introducir una frase de contraseña segura, lo cual es muy recomendable. Una frase de contraseña agrega una capa de seguridad adicional para evitar el inicio de sesión de usuarios no autorizados. Para obtener más información sobre seguridad, consulte nuestro tutorial (en idioma inglés) [Cómo configurar la autenticación basada en claves de SSH en un servidor de Linux](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server).
 
 Debería ver el siguiente resultado:
 
