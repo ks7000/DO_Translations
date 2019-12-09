@@ -69,9 +69,9 @@ The key's randomart image is:
 
 Ahora dispondrá de una clave pública y privada que puede usar para realizar la autenticación. El siguiente paso es ubicar la clave pública en su servidor a fin de poder usar la autenticación basada en claves de SSH para iniciar sesión.
 
-## Step 2 — Copy the Public Key to Ubuntu Server
+## Paso 2: Copiar la clave pública al servidor de Ubuntu
 
-The quickest way to copy your public key to the Ubuntu host is to use a utility called <code>ssh-copy-id</code>. Due to its simplicity, this method is highly recommended if available. If you do not have <code>ssh-copy-id</code> available to you on your client machine, you may use one of the two alternate methods provided in this section (copying via password-based SSH, or manually copying the key).
+La alternativa más rápida para copiar su clave pública al host de Ubuntu es usar una utilidad llamada <code>ssh-copy-id</code>. Debido a su simplicidad, este método se recomienda mucho si está disponible. Si no tiene la utilidad <code>ssh-copy-id</code> disponible en su máquina cliente, puede usar uno de los dos métodos alternativos proporcionados en esta sección (copiar mediante SSH con contraseña o copiar manualmente la clave).
 
 ### Copying Public Key Using <code>ssh-copy-id</code>
 
