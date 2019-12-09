@@ -73,19 +73,19 @@ Ahora dispondrá de una clave pública y privada que puede usar para realizar la
 
 La alternativa más rápida para copiar su clave pública al host de Ubuntu es usar una utilidad llamada <code>ssh-copy-id</code>. Debido a su simplicidad, este método se recomienda mucho si está disponible. Si no tiene la utilidad <code>ssh-copy-id</code> disponible en su máquina cliente, puede usar uno de los dos métodos alternativos proporcionados en esta sección (copiar mediante SSH con contraseña o copiar manualmente la clave).
 
-### Copying Public Key Using <code>ssh-copy-id</code>
+### Copiar clave pública usando <code>ssh-copy-id</code>
 
-The <code>ssh-copy-id</code> tool is included by default in many operating systems, so you may have it available on your local system. For this method to work, you must already have password-based SSH access to your server.
+La <code>ssh-copy-id</code> se incluye por defecto en muchos sistemas operativos. Por ello, es posible que tenga la posibilidad de disponer de ella en su sistema local. Para que este método funcione, ya debe disponer de acceso con SSH basado en contraseña en su servidor.
 
-To use the utility, you simply need to specify the remote host that you would like to connect to and the user account that you have password SSH access to. This is the account to which your public SSH key will be copied.
+Para usar la utilidad, solo necesita especificar el host remoto al que desee conectarse y la cuenta de usuario a la que tenga acceso SSH con contraseña. Esta es la cuenta a la que se copiará su clave de SSH pública.
 
-The syntax is:
+La sintaxis es la siguiente:
 
 ```
 $ ssh-copy-id username@remote\_host
 ```
 
-You may see the following message:
+Es posible que vea el siguiente mensaje:
 
 _Salida por pantalla_
 ```
@@ -95,9 +95,9 @@ Are you sure you want to continue connecting (yes/no)? yes
 
 ```
 
-This means that your local computer does not recognize the remote host. This will happen the first time you connect to a new host. Type “yes” and press <kbd>ENTER</kbd> to continue.
+Esto significa que su computadora local no reconoce el host remoto. Esto sucederá la primera vez que establezca conexión con un nuevo host. Escriba “yes” (sí) y presione <kbd>INTRO</kbd> para continuar.
 
-Next, the utility will scan your local account for the <coe>id\_rsa.pub</code> key that we created earlier. When it finds the key, it will prompt you for the password of the remote user’s account:
+A continuación, la utilidad analizará su cuenta local en busca de la clave <code>id\_rsa.pub</code> que creamos antes. Cuando la encuentre, le solicitará la contraseña de la cuenta del usuario remoto:
 
 _Salida por pantalla_
 ```
@@ -106,9 +106,9 @@ _Salida por pantalla_
 username@203.0.113.1's password:
 ```
 
-Type in the password (your typing will not be displayed for security purposes) and press <kbd>ENTER</kbd>. The utility will connect to the account on the remote host using the password you provided. It will then copy the contents of your <code>~/.ssh/id\_rsa.pub</code> key into a file in the remote account’s home <code>~/.ssh</code> directory called <code>authorized_keys</code>.
+Escriba la contraseña (por motivos de seguridad, no se mostrará lo que escriba) y presione <kbd>INTRO</kbd>. La utilidad se conectará a la cuenta en el host remoto usando la contraseña que proporcionó. Luego, copie el contenido de su clave <code>~/.ssh/id\_rsa.pub</code> a un archivo en el directorio principal de la cuenta remota <code>~/.ssh</code> llamado <code>authorized_keys</code>.
 
-You should see the following output:
+Debería ver el siguiente resultado:
 
 _Salida por pantalla_
 ```
@@ -118,7 +118,7 @@ Now try logging into the machine, with:   "ssh 'username@203.0.113.1'"
 and check to make sure that only the key(s) you wanted were added.
 ```
 
-At this point, your <code>id\_rsa.pub</code> key has been uploaded to the remote account. You can continue on to Step 3.
+En este punto, su clave <code>id\_rsa.pub</code> se habrá cargado en la cuenta remota. |Puede continuar con el paso 3.
 
 ### Copying Public Key Using SSH
 
@@ -145,7 +145,7 @@ ECDSA key fingerprint is fd:fd:d4:f9:77:fe:73:84:e1:55:00:ad:d6:6d:22:fe.
 Are you sure you want to continue connecting (yes/no)? yes
 ```
 
-This means that your local computer does not recognize the remote host. This will happen the first time you connect to a new host. Type “yes” and press <kbd>ENTER</kbd> to continue.
+This means that your local computer does not recognize the remote host. This will happen the first time you connect to a new host. Type “yes” and press <kbd>INTRO</kbd> to continue.
 
 Afterwards, you should be prompted to enter the remote user account password:
 
@@ -228,7 +228,7 @@ ECDSA key fingerprint is fd:fd:d4:f9:77:fe:73:84:e1:55:00:ad:d6:6d:22:fe.
 Are you sure you want to continue connecting (yes/no)? yes
 ```
 
-This means that your local computer does not recognize the remote host. Type “yes” and press <kbd>ENTER</kbd> to continue.
+This means that your local computer does not recognize the remote host. Type “yes” and press <kbd>INTRO</kbd> to continue.
 
 If you did not supply a passphrase for your private key, you will be logged in immediately. If you supplied a passphrase for the private key when you created the key, you will be prompted to enter it now (note that your keystrokes will not display in the terminal session for security). After authenticating, a new shell session should open for you with the configured account on the Ubuntu server.
 
@@ -256,7 +256,7 @@ PasswordAuthentication no
 ...
 ```
 
-Save and close the file when you are finished by pressing <kbd>CTRL</kbd> + <kbd>X</kbd>, then <kbd>Y</kbd> to confirm saving the file, and finally <kbd>ENTER</kbd> to exit nano. To actually implement these changes, we need to restart the sshd service:
+Save and close the file when you are finished by pressing <kbd>CTRL</kbd> + <kbd>X</kbd>, then <kbd>Y</kbd> to confirm saving the file, and finally <kbd>INTRO</kbd> to exit nano. To actually implement these changes, we need to restart the sshd service:
 
 ```shell
 $ sudo systemctl restart ssh
