@@ -10,44 +10,44 @@ In this guide, we’ll focus on setting up SSH keys for a vanilla Ubuntu 16.04 i
 
 The first step is to create a key pair on the client machine (usually your computer):
 
-'''shell
+```shell
 $ ssh-keygen
-'''
+```
 
 By default <code>ssh-keygen</code> will create a 2048-bit RSA key pair, which is secure enough for most use cases (you may optionally pass in the **-b 4096** flag to create a larger 4096-bit key).
 
 After entering the command, you should see the following output:
 
-'''
+```
 _Output_
 Generating public/private rsa key pair.
 Enter file in which to save the key (/<mark>your\_home</mark>/.ssh/id\_rsa):
-'''
+```
 
 Press <kbd>ENTER</kbd> to save the key pair into the <code>.ssh/</code> subdirectory in your home directory, or specify an alternate path.
 
 If you had previously generated an SSH key pair, you may see the following prompt:
 
-'''
+```
 _Output_
 /home/your\_home/.ssh/id\_rsa already exists.
 Overwrite (y/n)?
-'''
+```
 
 If you choose to overwrite the key on disk, you will **not** be able to authenticate using the previous key anymore. Be very careful when selecting yes, as this is a destructive process that cannot be reversed.
 
 You should then see the following prompt:
 
-'''
+```
 _Output_
 Enter passphrase (empty for no passphrase):
-'''
+```
 
 Here you optionally may enter a secure passphrase, which is highly recommended. A passphrase adds an additional layer of security to prevent unauthorized users from logging in. To learn more about security, consult our tutorial on [How To Configure SSH Key-Based Authentication on a Linux Server](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server).
 
 You should then see the following output:
 
-'''
+```
 _Output_
 Your identification has been saved in /<mark>your\_home</mark>/.ssh/id\_rsa.
 Your public key has been saved in /<mark>your\_home</mark>/.ssh/id\_rsa.pub.
@@ -65,7 +65,7 @@ The key's randomart image is:
 |. =++..          |
 |o=++.            |
 +-----------------+
-'''
+```
 
 You now have a public and private key that you can use to authenticate. The next step is to place the public key on your server so that you can use SSH-key-based authentication to log in.
 
@@ -81,42 +81,42 @@ To use the utility, you simply need to specify the remote host that you would li
 
 The syntax is:
 
-'''
+```
 $ ssh-copy-id username@remote\_host
-'''
+```
 
 You may see the following message:
 
-'''
+```
 _Output_
 The authenticity of host '<mark>203.0.113.1</mark> (<mark>203.0.113.1</mark>)' can't be established.
 ECDSA key fingerprint is fd:fd:d4:f9:77:fe:73:84:e1:55:00:ad:d6:6d:22:fe.
 Are you sure you want to continue connecting (yes/no)? <mark>yes</mark>
 
-'''
+```
 
 This means that your local computer does not recognize the remote host. This will happen the first time you connect to a new host. Type “yes” and press <kbd>ENTER</kbd> to continue.
 
 Next, the utility will scan your local account for the <coe>id\_rsa.pub</code> key that we created earlier. When it finds the key, it will prompt you for the password of the remote user’s account:
 
-'''
+```
 _Output_
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
 <mark>username</mark>@<mark>203.0.113.1</mark>'s password:
-'''
+```
 
 Type in the password (your typing will not be displayed for security purposes) and press <kbd>ENTER</kbd>. The utility will connect to the account on the remote host using the password you provided. It will then copy the contents of your <code>~/.ssh/id\_rsa.pub</code> key into a file in the remote account’s home <code>~/.ssh</code> directory called <code>authorized_keys</code>.
 
 You should see the following output:
 
-'''
+```
 _Output_
 Number of key(s) added: 1
 
 Now try logging into the machine, with:   "ssh '<mark>username</mark>@<mark>203.0.113.1</mark>'"
 and check to make sure that only the key(s) you wanted were added.
-'''
+```
 
 At this point, your <code>id\_rsa.pub</code> key has been uploaded to the remote account. You can continue on to Step 3.
 
@@ -132,27 +132,27 @@ We can then output the content we piped over into a file called <code>authorized
 
 The full command looks like this:
 
-'''shell
+```shell
 cat ~/.ssh/id\_rsa.pub | ssh <mark>username</mark>@<mark>remote\_host</mark> "mkdir -p ~/.ssh && touch ~/.ssh/authorized\_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized\_keys"
-'''
+```
 
 You may see the following message:
 
-'''
+```
 _Output_
 The authenticity of host '<mark>203.0.113.1</mark> (<mark>203.0.113.1</mark>)' can't be established.
 ECDSA key fingerprint is fd:fd:d4:f9:77:fe:73:84:e1:55:00:ad:d6:6d:22:fe.
 Are you sure you want to continue connecting (yes/no)? <mark>yes</mark>
-'''
+```
 
 This means that your local computer does not recognize the remote host. This will happen the first time you connect to a new host. Type “yes” and press <kbd>ENTER</kbd> to continue.
 
 Afterwards, you should be prompted to enter the remote user account password:
 
-'''
+```
 _Output_
 <mark>username</mark>@<mark>203.0.113.1</mark>'s password:
-'''
+```
 
 After entering your password, the content of your <code>id\_rsa.pub<code> key will be copied to the end of the <code>authorized\_keys</code> file of the remote user’s account. Continue on to Step 3 if this was successful.
 
@@ -164,46 +164,46 @@ We will manually append the content of your <code>id\_rsa.pub<code> file to the 
 
 To display the content of your <code>id\_rsa.pub<code> key, type this into your local computer:
 
-'''shell
+```shell
 $ cat ~/.ssh/id_rsa.pub
-'''
+```
 
 You will see the key’s content, which should look something like this:
 
-'''
+```
 _Output_
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCqql6MzstZYh1TmWWv11q5O3pISj2ZFl9HgH1JLknLLx44+tXfJ7mIrKNxOOwxIxvcBF8PXSYvobFYEZjGIVCEAjrUzLiIxbyCoxVyle7Q+bqgZ8SeeM8wzytsY+dVGcBxF6N4JS+zVk5eMcV385gG3Y6ON3EG112n6d+SMXY0OEBIcO6x+PnUSGHrSgpBgX7Ks1r7xqFa7heJLLt2wWwkARptX7udSq05paBhcpB0pHtA1Rfz3K2B+ZVIpSDfki9UVKzT8JUmwW6NNzSgxUfQHGwnW7kj4jp4AT0VZk3ADw497M2G/12N0PPB5CnhHf7ovgy6nL1ikrygTKRFmNZISvAcywB9GVqNAVE+ZHDSCuURNsAInVzgYo9xgJDW8wUw2o8U77+xiFxgI5QSZX3Iq7YLMgeksaO4rBJEa54k8m5wEiEE1nUhLuJ0X/vh2xPff6SQ1BL/zkOhvJCACK6Vb15mDOeCSq54Cr7kvS46itMosi/uS66+PujOO+xt/2FWYepz6ZlN70bRly57Q06J+ZJoc9FfBCbCyYH7U/ASsmY095ywPsBo1XQ9PqhnN1/YOorJ068foQDNVpm146mUpILVxmq41Cj55YKHEazXGsdBIbXWhcrRf4G2fJLRcGUr9q8/lERo9oxRm5JFX6TCmj6kmiFqv+Ow9gI0x8GvaQ== demo@test
-'''
+```
 
 Access your remote host using whichever method you have available.
 
 Once you have access to your account on the remote server, you should make sure the <code>~/.ssh</code> directory exists. This command will create the directory if necessary, or do nothing if it already exists:
 
-'''shell
+```shell
 $ mkdir -p ~/.ssh
-'''
+```
 
 Now, you can create or modify the <code>authorized\_keys</code> file within this directory. You can add the contents of your <code>id\_rsa.pub<code> file to the end of the <code>authorized\_keys</code> file, creating it if necessary, using this command:
 
-'''shell
+```shell
 $ echo <mark>public\_key\_string<mark> >> ~/.ssh/authorized\_keys
-'''
+```
 
 In the above command, substitute the <code>public\_key\_string</code> with the output from the <code>cat ~/.ssh/id_rsa.pub</code> command that you executed on your local system. It should start with <code>ssh-rsa AAAA... </code>.
 
 Finally, we’ll ensure that the <code>~/.ssh</code> directory and <code>authorized\_keys</code> file have the appropriate permissions set:
 
-'''shell
+```shell
 $ chmod -R go= ~/.ssh
-'''
+```
 
 This recursively removes all “group” and “other” permissions for the <code>~/.ssh/</code> directory.
 
 If you’re using the root account to set up keys for a user account, it’s also important that the <code>~/.ssh/</code> directory belongs to the user and not to root:
 
-'''shell
+```shell
 $ chown -R <mark>sammy</mark>:<mark>sammy</mark> ~/.ssh
-'''
+```
 
 In this tutorial our user is named <mark>sammy</mark> but you should substitute the appropriate username into the above command.
 
@@ -215,18 +215,18 @@ If you have successfully completed one of the procedures above, you should be ab
 
 The basic process is the same:
 
-'''shell
+```shell
 $ ssh <mark>username</mark>@<mark>remote\_host<mark>
-'''
+```
 
 If this is your first time connecting to this host (if you used the last method above), you may see something like this:
 
-'''
+```
 _Output_
 The authenticity of host '<mark>203.0.113.1</mark> (<mark>203.0.113.1</mark>)' can't be established.
 ECDSA key fingerprint is fd:fd:d4:f9:77:fe:73:84:e1:55:00:ad:d6:6d:22:fe.
 Are you sure you want to continue connecting (yes/no)? <mark>yes</mark>
-'''
+```
 
 This means that your local computer does not recognize the remote host. Type “yes” and press <kbd>ENTER</kbd> to continue.
 
@@ -242,31 +242,31 @@ Before completing the steps in this section, make sure that you either have SSH-
 
 Once you’ve confirmed that your remote account has administrative privileges, log into your remote server with SSH keys, either as root or with an account with sudo privileges. Then, open up the SSH daemon’s configuration file:
 
-'''shell
+```shell
 $ sudo nano /etc/ssh/sshd\_config
 
-'''
+```
 
 Inside the file, search for a directive called <code>PasswordAuthentication</code>. This may be commented out. Uncomment the line and set the value to “no”. This will disable your ability to log in via SSH using account passwords:
 
-'''
+```
 _(file)_ /etc/ssh/sshd\_config
 ...
 PasswordAuthentication no
 ...
-'''
+```
 
 Save and close the file when you are finished by pressing <kbd>CTRL</kbd> + <kbd>X</kbd>, then <kbd>Y</kbd> to confirm saving the file, and finally <kbd>ENTER</kbd> to exit nano. To actually implement these changes, we need to restart the sshd service:
 
-'''shell
+```shell
 $ sudo systemctl restart ssh
-'''
+```
 
 As a precaution, open up a new terminal window and test that the SSH service is functioning correctly before closing this session:
 
-'''shell
+```shell
 $ ssh <mark>username</mark>@<mark>remote\_host<mark>
-'''
+```
 
 Once you have verified your SSH service, you can safely close all current server sessions.
 
