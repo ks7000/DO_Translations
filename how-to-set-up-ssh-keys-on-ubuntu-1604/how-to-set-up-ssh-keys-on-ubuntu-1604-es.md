@@ -106,7 +106,7 @@ _Salida por pantalla_
 username@203.0.113.1's password:
 ```
 
-Escriba la contraseña (por motivos de seguridad, no se mostrará lo que escriba) y presione <kbd>INTRO</kbd>. La utilidad se conectará a la cuenta en el host remoto usando la contraseña que proporcionó. Luego, copie el contenido de su clave <code>~/.ssh/id\_rsa.pub</code> a un archivo en el directorio principal de la cuenta remota <code>~/.ssh</code> llamado <code>authorized_keys</code>.
+Escriba la contraseña (por motivos de seguridad, no se mostrará lo que escriba) y presione <kbd>INTRO</kbd>. La utilidad se conectará a la cuenta en el host remoto usando la contraseña que proporcionó. Luego, copie el contenido de su clave <code> ~/.ssh/id\_rsa.pub </code> a un archivo en el directorio principal de la cuenta remota <code>~/.ssh</code> llamado <code>authorized_keys</code>.
 
 Debería ver el siguiente resultado:
 
@@ -209,17 +209,17 @@ En este tutorial, nuestro usuario recibe el nombre <mark>sammy</mark> pero debe 
 
 Ahora podemos intentar la autenticación sin contraseña con nuestro servidor de Ubuntu.
 
-## Step 3 — Authenticate to Ubuntu Server Using SSH Keys
+## Paso 3: Autenticación en el servidor de Ubuntu con claves de SSH
 
-If you have successfully completed one of the procedures above, you should be able to log into the remote host _without_ the remote account’s password.
+Si completó con éxito uno de los procedimientos anteriores, debería poder iniciar sesión en el host remoto _sin_ la contraseña de la cuenta remota.
 
-The basic process is the same:
+El proceso básico es el mismo:
 
 ```shell
 $ ssh username@remote\_host
 ```
 
-If this is your first time connecting to this host (if you used the last method above), you may see something like this:
+Si es la primera vez que establece conexión con este host (si empleó el último método anterior), es posible que vea algo como esto:
 
 _Salida por pantalla_
 ```
@@ -228,50 +228,49 @@ ECDSA key fingerprint is fd:fd:d4:f9:77:fe:73:84:e1:55:00:ad:d6:6d:22:fe.
 Are you sure you want to continue connecting (yes/no)? yes
 ```
 
-This means that your local computer does not recognize the remote host. Type “yes” and press <kbd>INTRO</kbd> to continue.
+Esto significa que su computadora local no reconoce el host remoto. Escriba “yes” y presione <kbd>INTRO</kbd> para continuar.
 
-If you did not supply a passphrase for your private key, you will be logged in immediately. If you supplied a passphrase for the private key when you created the key, you will be prompted to enter it now (note that your keystrokes will not display in the terminal session for security). After authenticating, a new shell session should open for you with the configured account on the Ubuntu server.
+Si no proporcionó una frase de contraseña para su clave privada, se iniciará sesión de inmediato. Si proporcionó una frase de contraseña para la clave privada al crearla, se solicitará que la introduzca ahora (tenga en cuenta que, por motivos de seguridad, las pulsaciones de teclas no se mostrarán en la sesión de terminal). Después de la autenticación, se debería abrir una nueva sesión de shell con la cuenta configurada en el servidor de Ubuntu.
 
-If key-based authentication was successful, continue on to learn how to further secure your system by disabling password authentication.
+Si la autenticación basada en claves se realizó con éxito, puede aprender a proteger más su sistema inhabilitando la autenticación con contraseña.
 
-## Step 4 — Disable Password Authentication on your Server
+## Paso 4: Inhabilitar la autenticación con contraseña en su servidor
 
-If you were able to log into your account using SSH without a password, you have successfully configured SSH-key-based authentication to your account. However, your password-based authentication mechanism is still active, meaning that your server is still exposed to brute-force attacks.
+Si pudo iniciar sesión en su cuenta usando SSH sin una contraseña, habrá configurado con éxito la autenticación basada en claves de SSH para su cuenta. Sin embargo, su mecanismo de autenticación basado en contraseña sigue activo. Esto significa que su servidor sigue expuesto a ataques de fuerza bruta.
 
-Before completing the steps in this section, make sure that you either have SSH-key-based authentication configured for the root account on this server, or preferably, that you have SSH-key-based authentication configured for a non-root account on this server with sudo privileges. This step will lock down password-based logins, so ensuring that you will still be able to get administrative access is crucial.
+Antes de completar los pasos de esta sección, asegúrese de tener configurada la autenticación basada en claves de SSH para la cuenta <code>root</code> en este servidor o, preferentemente, la autenticación basada en clave de SSH para una cuenta no <code>root</code> en este servidor con privilegios <code>sudo</code>. Con este paso, se bloquearán los registros basados en contraseñas. Por lo tanto, es fundamental que se asegure de seguir teniendo acceso administrativo.
 
-Once you’ve confirmed that your remote account has administrative privileges, log into your remote server with SSH keys, either as root or with an account with sudo privileges. Then, open up the SSH daemon’s configuration file:
+Una vez que haya confirmado que su cuenta remota tiene privilegios administrativos, inicie sesión en su servidor remoto con claves de SSH, ya sea como <code>root</code> o con una cuenta con privilegios <code>sudo</code>. Luego, abra el archivo de configuración del demonio de SSH:
 
 ```shell
 $ sudo nano /etc/ssh/sshd\_config
 
 ```
 
-Inside the file, search for a directive called <code>PasswordAuthentication</code>. This may be commented out. Uncomment the line and set the value to “no”. This will disable your ability to log in via SSH using account passwords:
+Dentro del archivo, busque una directiva llamada <code>PasswordAuthentication</code>. Puede insertar comentarios sobre esto. Elimine los comentarios de la línea y fije el valor en “no”. Esto inhabilitará su capacidad de iniciar sesión a través de SSH usando contraseñas de cuenta:
 
-_(file)_ <code>/etc/ssh/sshd\_config</code>
+_(Fichero)_ <code>/etc/ssh/sshd\_config</code>
 ```
 ...
 PasswordAuthentication no
 ...
 ```
 
-Save and close the file when you are finished by pressing <kbd>CTRL</kbd> + <kbd>X</kbd>, then <kbd>Y</kbd> to confirm saving the file, and finally <kbd>INTRO</kbd> to exit nano. To actually implement these changes, we need to restart the sshd service:
+Guarde y cierre el archivo cuando haya terminado presionando <kbd>CTRL</kbd> + <kbd>X</kbd>, luego <kbd>Y</kbd> para confirmar la operación de guardado y, por último, <kbd>INTRO</kbd> para cerrar nano. Para implementar realmente estos cambios, debemos reiniciar el servicio <code>sshd</code>:
 
 ```shell
 $ sudo systemctl restart ssh
 ```
 
-As a precaution, open up a new terminal window and test that the SSH service is functioning correctly before closing this session:
+Como medida de precaución, abra una nueva ventana de terminal y compruebe que el servicio SSH funcione correctamente antes de cerrar esta sesión:
 
 ```shell
 $ ssh username@remote\_host
 ```
 
-Once you have verified your SSH service, you can safely close all current server sessions.
+Una vez que haya verificado su servicio SSH, podrá cerrar de forma segura todas las sesiones de servidores actuales.
 
-The SSH daemon on your Ubuntu server now only responds to SSH keys. Password-based authentication has successfully been disabled.
-
+El demonio de SSH de su servidor de Ubuntu ahora solo responderá a claves de SSH. La autenticación basada en contraseña se habrá desactivado con éxito.
 ## Conclusion
 
 You should now have SSH-key-based authentication configured on your server, allowing you to sign in without providing an account password.
