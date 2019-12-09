@@ -230,7 +230,7 @@ Are you sure you want to continue connecting (yes/no)? yes
 
 Esto significa que su computadora local no reconoce el host remoto. Escriba “yes” y presione <kbd>INTRO</kbd> para continuar.
 
-Si no proporcionó una frase de contraseña para su clave privada, se iniciará sesión de inmediato. Si proporcionó una frase de contraseña para la clave privada al crearla, se solicitará que la introduzca ahora (tenga en cuenta que, por motivos de seguridad, las pulsaciones de teclas no se mostrarán en la sesión de terminal). Después de la autenticación, se debería abrir una nueva sesión de shell con la cuenta configurada en el servidor de Ubuntu.
+Si no proporcionó una frase de contraseña para su clave privada, se iniciará sesión de inmediato. Si proporcionó una frase de contraseña para la clave privada al crearla, se solicitará que la introduzca ahora (tenga en cuenta que, por motivos de seguridad, las pulsaciones de teclas no se mostrarán en la sesión de terminal). Después de la autenticación, se debería abrir una nueva sesión del intérprete de comandos con la cuenta configurada en el servidor de Ubuntu.
 
 Si la autenticación basada en claves se realizó con éxito, puede aprender a proteger más su sistema inhabilitando la autenticación con contraseña.
 
