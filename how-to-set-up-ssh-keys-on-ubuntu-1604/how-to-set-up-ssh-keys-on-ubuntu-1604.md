@@ -97,7 +97,7 @@ Are you sure you want to continue connecting (yes/no)? yes
 
 This means that your local computer does not recognize the remote host. This will happen the first time you connect to a new host. Type “yes” and press <kbd>ENTER</kbd> to continue.
 
-Next, the utility will scan your local account for the <coe>id\_rsa.pub</code> key that we created earlier. When it finds the key, it will prompt you for the password of the remote user’s account:
+Next, the utility will scan your local account for the <code>id\_rsa.pub</code> key that we created earlier. When it finds the key, it will prompt you for the password of the remote user’s account:
 
 _Output_
 ```
@@ -124,7 +124,7 @@ At this point, your <code>id\_rsa.pub</code> key has been uploaded to the remote
 
 If you do not have <code>ssh-copy-id</code> available, but you have password-based SSH access to an account on your server, you can upload your keys using a conventional SSH method.
 
-We can do this by using the cat command to read the contents of the public SSH key on our local computer and piping that through an SSH connection to the remote server.
+We can do this by using the <code>cat</code> command to read the contents of the public SSH key on our local computer and piping that through an SSH connection to the remote server.
 
 On the other side, we can make sure that the <code>~/.ssh</code> directory exists and has the correct permissions under the account we’re using.
 
