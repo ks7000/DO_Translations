@@ -272,7 +272,7 @@ Una vez que haya verificado su servicio SSH, podrá cerrar de forma segura todas
 
 El demonio de SSH de su servidor de Ubuntu ahora solo responderá a claves de SSH. La autenticación basada en contraseña se habrá desactivado con éxito.
 
-## Conclusion
+## Conclusión
 
 De esta manera, la autenticación basada en claves de SSH debería quedar configurada en su servidor. Esto le permitirá iniciar sesión sin proporcionar una contraseña de cuenta.
 
