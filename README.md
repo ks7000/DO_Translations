@@ -26,7 +26,7 @@ If that is not enough reason, we add another: redundancy in translations does no
 
 There are many ways to work in distributed environments with Git, as [Scott Chacon explains in his book "Pro Git 2"](https://git-scm.com/book/es/v2/Git-en-entornos-distribuidos-Flujos-de-trabajo-distribuidos). We have simply chosen to have a main branch (called main) with the necessary presentation, license and code files to automate the work, just that :sparkles:.
 
-For each tutorial (we also call it an **article** or **publication**) we open a branch whose name is the [semantic URL (slug)]https://en.wikipedia.org/wiki/Clean_URL() of the original publication. The Python language is the one selected for:
+For each tutorial (we also call it an **article** or **publication**) we open a branch whose name is the [semantic URL (slug)](https://en.wikipedia.org/wiki/Clean_URL) of the original publication. The Python language is the one selected for:
 
 * Download the content of the article and save with said semantic URL but in [MarkDown format, GitHub version](https://guides.github.com/features/mastering-markdown/) :octocat: and make a commit.
 * If the publication already has Spanish translation, copy the previous file with the semantic URL in Spanish as a name and perform a commit.
